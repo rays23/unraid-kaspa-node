@@ -1,4 +1,5 @@
-<Container>
+<?xml version="1.0"?>
+<Container version="2">
   <Name>Kaspa Node</Name>
   <Repository>kaspanet/rusty-kaspad:latest</Repository>
   <Network>bridge</Network>
@@ -7,17 +8,10 @@
   <Project>https://github.com/kaspanet/rusty-kaspa</Project>
   <Overview>Official Rust implementation of the Kaspa Node. Fully tested on Unraid 6.12+.</Overview>
   <Category>Blockchain:Node</Category>
+  <Icon>https://raw.githubusercontent.com/rays23/unraid-kaspa-node/main/kaspa-logo.png</Icon>
   <ExtraParams>--utxoindex --disable-upnp --maxinpeers=64 --outpeers=32 --yes</ExtraParams>
-  <Data>
-    <Volume>
-      <HostDir>/mnt/user/appdata/kaspa</HostDir>
-      <ContainerDir>/app/data</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-  </Data>
-  <Ports>
-    <Port><HostPort>16110</HostPort><ContainerPort>16110</ContainerPort><Protocol>tcp</Protocol></Port>
-    <Port><HostPort>16111</HostPort><ContainerPort>16111</ContainerPort><Protocol>tcp</Protocol></Port>
-    <Port><HostPort>17110</HostPort><ContainerPort>17110</ContainerPort><Protocol>tcp</Protocol></Port>
-  </Ports>
+  <Config Type="Path" Name="Data Directory" Target="/app/data" Default="/mnt/user/appdata/kaspa" Mode="rw" Description="Kaspa blockchain data directory"/>
+  <Config Type="Port" Name="P2P Port" Target="16110" Default="16110" Mode="tcp" Description="Kaspa P2P port"/>
+  <Config Type="Port" Name="RPC Port" Target="16111" Default="16111" Mode="tcp" Description="Kaspa RPC port"/>
+  <Config Type="Port" Name="JSON-RPC Port" Target="17110" Default="17110" Mode="tcp" Description="Kaspa JSON-RPC port"/>
 </Container>
